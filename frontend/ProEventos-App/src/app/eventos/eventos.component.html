@@ -19,7 +19,12 @@
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
-      <th><button class="btn btn-primary btn-sm btn-outline-light" (click)="isCollapsed = !isCollapsed"> {{!isCollapsed ? 'Exibir Img' : 'Ocultar Img'}}</button></th>
+      <th>
+        <button class="btn btn-primary btn-sm btn-outline-light" (click)="isCollapsed = !isCollapsed">
+          <i class="{{!isCollapsed ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+          {{!isCollapsed ? 'Exibir Img' : 'Ocultar Img'}}
+        </button>
+      </th>
       <th>#</th>
       <th>Tema</th>
       <th>Local</th>
@@ -41,15 +46,19 @@
           [style.margin.px]="margImg"
         >
       </td>
-      <td>{{evento.eventoId}}</td>
+      <td>{{evento.id}}</td>
       <td>{{evento.tema}}</td>
       <td>{{evento.local}}</td>
       <td>{{evento.dataEvento}}</td>
       <td>{{evento.qtdPessoa}}</td>
-      <td>{{evento.lote}}</td>
+      <td>{{evento.lotes[0].nome}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm m-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button type="button" class="btn btn-primary btn-sm m-2">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">
+          <i class="fa fa-trash"></i>
+        </button>
       </td>
     </tr>
   </tbody>

@@ -503,4 +503,4 @@ Thumbs.db
 #Excluindo DB
 *.db
 *.db=shm
-*.dm-wal
+*.db-wal

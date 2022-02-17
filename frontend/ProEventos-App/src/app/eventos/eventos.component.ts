@@ -1,7 +1,9 @@
-import { Evento } from './../models/Evento';
-import { EventoService } from './../services/evento.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { Evento } from './../models/Evento';
+import { EventoService } from './../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -17,6 +19,13 @@ export class EventosComponent implements OnInit {
   public margImg: number = 2;
   isCollapsed: boolean = true;
   private _listFilter: string = '';
+
+  constructor(
+    private eventoService: EventoService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) { }
 
   public get listFilter(): string {
     return this._listFilter;
@@ -37,23 +46,23 @@ export class EventosComponent implements OnInit {
     );
   }
 
-  constructor(
-    private eventoService: EventoService,
-    private modalService: BsModalService
-  ) { }
-
   public ngOnInit() {
+    this.spinner.show();
     this.getEventos();
   }
 
   public getEventos(): void {
-    this.eventoService.getEventos().subscribe(
-      (_eventos: Evento[]) => {
+    this.eventoService.getEventos().subscribe({
+      next: (_eventos: Evento[]) => {
         this.eventos = _eventos;
         this.eventosFiltrados = this.eventos;
       },
-      erro => console.log(erro)
-    );
+      error: (erro: any) => {
+        this.spinner.hide();
+        this.toastr.error('Erro ao carregar os eventos.', 'Erro!');
+      },
+      complete: () => this.spinner.hide()
+    });
   }
 
   openModal(template: TemplateRef<any>): void {
@@ -62,6 +71,7 @@ export class EventosComponent implements OnInit {
 
   confirm(): void {
     this.modalRef?.hide();
+    this.toastr.success('Evento Deletado.', 'Deletado!');
   }
 
   decline(): void {

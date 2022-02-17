@@ -13,9 +13,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventosComponent } from './eventos/eventos.component';
-import { PalestrantesComponent } from './palestrantes/palestrantes.component';
+
+import { EventosComponent } from './components/eventos/eventos.component';
+import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
 import { NavComponent } from './nav/nav.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ContatosComponent } from './components/contatos/contatos.component';
+import { TitleComponent } from './shared/title/title.component';
 
 import { EventoService } from './services/evento.service';
 
@@ -28,7 +33,11 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
       EventosComponent,
       PalestrantesComponent,
       NavComponent,
-      DateTimeFormatPipe
+      DateTimeFormatPipe,
+      TitleComponent,
+      ContatosComponent,
+      DashboardComponent,
+      PerfilComponent
   ],
   imports: [
     BrowserModule,

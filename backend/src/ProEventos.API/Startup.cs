@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,10 @@ namespace ProEventos.API
             services.AddScoped<IGeralPersist, GeralPersist>();
             services.AddScoped<IEventoPersist, EventoPersist>();
 
+            services.AddAuthentication(
+                CertificateAuthenticationDefaults.AuthenticationScheme)
+            .AddCertificate();
+
             services.AddCors();
 
             services.AddSwaggerGen(c =>
@@ -56,6 +61,8 @@ namespace ProEventos.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 

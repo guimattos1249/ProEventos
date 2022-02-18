@@ -1,20 +1,45 @@
-<app-title [title]="'Evento'"></app-title>
+<app-title [title]="'Eventos'" [iconClass]="'fa fa-calendar-alt'"  [listButton]="true"></app-title>
 
-<div class="row g-3">
-  <div class="col-auto">
-    <label class="mr-2"for="find">Filtro: </label>
-    <input
-      id="find"
-      type="text"
-      class="form-control mr-2"
-      placeholder="buscar"
-      [(ngModel)]="listFilter"
-    >
+<div class="card rounded shadow-sm p-3">
+<!--
+<div class="row g-3 mb-3 d-flex">
+  <div class="col-auto  me-auto">
+    <label class="me-2">Filtro: </label>
+      <input
+        type="text"
+        class="me-2 p-1"
+        placeholder="buscar"
+        [(ngModel)]="listFilter"
+      >
   </div>
   <div class="col-auto">
+    <a class="d-flex btn btn-outline-primary" href="#">
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ms-1 d-none d-sm-block">Novo</b>
+  </a>
+  </div>
+</div> -->
+
+<div class="d-flex">
+  <div class="flex-fill">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Filtro:</span>
+      <input
+        type="text"
+        class="form-control me-2"
+        placeholder="Fitrar por tema e local"
+        [(ngModel)]="listFilter"
+      >
+    </div>
+  </div>
+  <div>
+    <a class="d-flex btn btn-outline-primary" href="#">
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ms-1 d-none d-sm-block">Novo</b>
+    </a>
   </div>
 </div>
-<p></p>
+
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
@@ -52,7 +77,7 @@
       <td>{{evento.qtdPessoa}}</td>
       <td>{{evento.lotes[0].nome}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm m-1" tooltip="Editar">
+        <button type="button" class="btn btn-primary btn-sm me-1" tooltip="Editar">
           <i class="fa fa-edit"></i>
         </button>
         <button type="button" class="btn btn-danger btn-sm m-1" tooltip="Excluir" (click)="openModal(template)">
@@ -69,6 +94,7 @@
     </tr>
   </tfoot>
 </table>
+</div>
 
 <ng-template #template>
   <div class="modal-body text-center">

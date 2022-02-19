@@ -23,11 +23,13 @@ import { ContatosComponent } from './components/contatos/contatos.component';
 import { TitleComponent } from './shared/title/title.component';
 import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 import { EventoService } from './services/evento.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
-import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { UserComponent } from './components/user/user.component';
       PerfilComponent,
       EventoDetalheComponent,
       EventoListaComponent,
-      UserComponent
+      UserComponent,
+      LoginComponent,
+      RegistrationComponent,
   ],
   imports: [
     BrowserModule,

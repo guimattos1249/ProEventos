@@ -17,10 +17,13 @@ export class EventoListaComponent implements OnInit {
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
+  public eventoId: number = 0;
+
   public widthImg: number = 100;
   public margImg: number = 2;
   isCollapsed: boolean = true;
   private _listFilter: string = '';
+
 
   constructor(
     private eventoService: EventoService,
@@ -68,7 +71,9 @@ export class EventoListaComponent implements OnInit {
     });
   }
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
+    event.stopPropagation();
+    this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 

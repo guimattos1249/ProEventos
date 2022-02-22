@@ -10,7 +10,7 @@ export class EventoDetalheComponent implements OnInit {
 
   public form!: FormGroup;
 
-  get f(): { [key: string]: AbstractControl } {
+  get f(): any{
     return this.form.controls;
   }
 
@@ -35,6 +35,10 @@ export class EventoDetalheComponent implements OnInit {
   public resetForm(event: any): void {
     event.preventDefault();
     this.form.reset();
+  }
+
+  public cssValidator(fieldForm: FormControl): any {
+    return {'is-invalid': fieldForm.errors && fieldForm.touched };
   }
 
 }

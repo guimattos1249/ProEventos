@@ -5,7 +5,7 @@
         <div class="form-group col-md-12">
           <label>Tema</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.tema.errors && f.tema.touched }"
+            [ngClass]="cssValidator(f.tema)"
             formControlName="tema" placeholder="Insira o Tema">
           <div *ngIf="f.tema.errors?.required"  class="invalid-feedback">
             O Tema é obrigatório
@@ -22,7 +22,7 @@
         <div class="form-group col-md-8">
           <label>Local</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.local.errors && f.local.touched }"
+            [ngClass]="cssValidator(f.local)"
             formControlName="local" placeholder="">
           <div *ngIf="f.local.errors?.required" class="invalid-feedback">
             O Local é obrigatório
@@ -32,7 +32,7 @@
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
           <input type="datetime" class="form-control"
-            [ngClass]="{'is-invalid': f.dataEvento.errors && f.dataEvento.touched }"
+            [ngClass]="cssValidator(f.dataEvento)"
             formControlName="dataEvento" placeholder="">
           <div *ngIf="f.dataEvento.errors?.required" class="invalid-feedback">
             A Data e Hora é obrigatória
@@ -44,7 +44,7 @@
         <div class="form-group col-md-2">
           <label>Qtd Pessoas</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.qtdPessoa.errors && f.qtdPessoa.touched }"
+            [ngClass]="cssValidator(f.qtdPessoa)"
             formControlName="qtdPessoa" placeholder="">
           <div *ngIf="f.qtdPessoa.errors?.required" class="invalid-feedback">
             A Quantidade de pessoas é obrigatória
@@ -57,7 +57,7 @@
         <div class="form-group col-md-2">
           <label>Telefone</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.telefone.errors && f.telefone.touched }"
+            [ngClass]="cssValidator(f.telefone)"
             formControlName="telefone" placeholder="(000) 90000-0000">
           <div *ngIf="f.telefone.errors?.required" class="invalid-feedback">
             O Telefone é obrigatório
@@ -67,7 +67,7 @@
         <div class="form-group col-md-4">
           <label>e-mail</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.email.errors && f.email.touched }"
+            [ngClass]="cssValidator(f.email)"
             formControlName="email" placeholder="e-mail">
           <div *ngIf="f.email.errors?.required" class="invalid-feedback">
             O e-mail é obrigatório
@@ -80,7 +80,7 @@
         <div class="form-group col-md-4">
           <label>Imagem</label>
           <input type="text" class="form-control"
-            [ngClass]="{'is-invalid': f.imagemURL.errors && f.imagemURL.touched }"
+            [ngClass]="cssValidator(f.imagemURL)"
             formControlName="imagemURL" placeholder="imagem">
           <div *ngIf="f.imagemURL.errors?.required" class="invalid-feedback">
             O Imagem é obrigatório

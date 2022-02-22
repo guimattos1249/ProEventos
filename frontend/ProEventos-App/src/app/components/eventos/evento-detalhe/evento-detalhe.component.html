@@ -32,6 +32,8 @@
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
           <input type="datetime" class="form-control"
+            bsDatepicker
+            [bsConfig]="bsConfig"
             [ngClass]="cssValidator(f.dataEvento)"
             formControlName="dataEvento" placeholder="">
           <div *ngIf="f.dataEvento.errors?.required" class="invalid-feedback">

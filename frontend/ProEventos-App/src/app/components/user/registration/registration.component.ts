@@ -30,8 +30,8 @@ export class RegistrationComponent implements OnInit {
       ultimoNome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       userName: ['', [Validators.required, Validators.minLength(4)]],
-      senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-      confirmeSenha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      senha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      confirmeSenha: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       termos: ['', Validators.requiredTrue],
     }, formOptions);
   }

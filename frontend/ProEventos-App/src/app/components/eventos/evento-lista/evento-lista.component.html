@@ -52,9 +52,10 @@
         <td>{{evento.id}}</td>
         <td>{{evento.tema}}</td>
         <td class="d-none d-md-table-cell">{{evento.local}}</td>
-        <td>{{evento.dataEvento | DateTimeFormat}}</td>
+        <!-- <td>{{evento.dataEvento | DateTimeFormat}}</td> -->
+        <td>{{evento.dataEvento}}</td>
         <td class="d-none d-sm-table-cell">{{evento.qtdPessoa}}</td>
-        <td class="d-none d-sm-table-cell">{{evento.lotes[0].nome}}</td>
+        <td class="d-none d-sm-table-cell">{{evento.lotes[0]?.nome}}</td>
         <td>
           <button type="button" class="btn btn-danger btn-lg" tooltip="Excluir" (click)="openModal(template)">
             <i class="fa fa-trash"></i>

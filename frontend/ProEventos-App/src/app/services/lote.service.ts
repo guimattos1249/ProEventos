@@ -15,7 +15,7 @@ export class LoteService {
       .pipe(take(1));
   }
 
-  public saveLote(eventoId: number, lotes: Lote[]): Observable<Lote[]> {
+  public saveLotes(eventoId: number, lotes: Lote[]): Observable<Lote[]> {
     return this.http.put<Lote[]>(`${this.baseURL}/${eventoId}`,  lotes)
       .pipe(take(1));
   }

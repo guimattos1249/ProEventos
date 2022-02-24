@@ -35,8 +35,9 @@
             bsDatepicker
             [bsConfig]="bsConfig"
             [ngClass]="cssValidator(f.dataEvento)"
-            value="{{evento.dataEvento | DateTimeFormat}}"
+            value="{{evento.dataEvento}}"
             formControlName="dataEvento" placeholder="">
+            <!-- value="{{evento.dataEvento | DateTimeFormat}}" -->
           <div *ngIf="f.dataEvento.errors?.required" class="invalid-feedback">
             A Data e Hora é obrigatória
           </div>
@@ -106,7 +107,9 @@
   </form>
 </div>
 
-<div class="card rounded shadow-sm mt-4">
+<div class="card rounded shadow-sm mt-4" *ngIf="editMode" >
+  <!-- <p>Form value: {{form.controls.lotes.value | json}}</p>
+  <p>Form status: {{form.controls.lotes.status | json}}</p> -->
   <div class="p-3">
     <div class="d-flex border-bottom">
       <h2 class="me-auto">
@@ -118,9 +121,9 @@
     </div>
     <p>Clique em Lote para adicionar e preencher novos Lotes</p>
     <div class="form-row p-1 mb-3">
-      <div class="col">
+      <div [formGroup]="form" class="col">
         <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i=index" >
-          <fieldset class="form-group">
+          <fieldset [formGroupName]="i" class="form-group">
             <legend class="d-flex justify-content-between capitalize">
               <button class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex  mt-3"
                 tooltip="Excluir Lote"
@@ -134,15 +137,30 @@
           <div class="row">
             <div class="form-group col-md-4">
               <label>Nome</label>
-              <input type="text" class="form-control" formControlName="nome" placeholder="Lote">
+              <input
+                [ngClass]="cssValidator(lotes.get(i+'.nome'))"
+                type="text" class="form-control" formControlName="nome" placeholder="Lote">
+                <div *ngIf="lotes.get(i+'.nome').errors?.required" class="invalid-feedback">
+                  O Nome do lote é obrigatório
+                </div>
             </div>
             <div class="form-group col-md-4">
               <label>Quantidade</label>
-              <input type="text" class="form-control" formControlName="quantidade" placeholder="000">
+              <input
+                [ngClass]="cssValidator(lotes.get(i+'.quantidade'))"
+                type="text" class="form-control" formControlName="quantidade" placeholder="000">
+                <div *ngIf="lotes.get(i+'.quantidade').errors?.required" class="invalid-feedback">
+                  A Quantidade do lote é obrigatório
+                </div>
             </div>
             <div class="form-group col-md-4">
               <label>Preço</label>
-              <input type="text" currencyMask class="form-control" formControlName="preco" placeholder="R$ 0,00">
+              <input
+                [ngClass]="cssValidator(lotes.get(i+'.preco'))"
+                type="text" currencyMask class="form-control" formControlName="preco" placeholder="R$ 0,00">
+                <div *ngIf="lotes.get(i+'.preco').errors?.required" class="invalid-feedback">
+                  O Preco do lote é obrigatório
+                </div>
             </div>
             <div class="form-group col-md-4">
               <label>Data Início</label>
@@ -167,9 +185,10 @@
     <button class="btn btn-outline-secondary me-auto border">
       Cancelar Alteração
     </button>
-    <button class="btn btn-success">
+    <button class="btn btn-success" (click)="saveLotes()" >
       Salvar Lotes
     </button>
   </div>
 </div>
 </div>
+<br>

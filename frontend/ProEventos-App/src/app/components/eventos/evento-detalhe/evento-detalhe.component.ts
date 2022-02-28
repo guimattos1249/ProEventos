@@ -70,15 +70,32 @@ export class EventoDetalheComponent implements OnInit {
         next: (evento: Evento) => {
           this.evento = {... evento};
           this.form.patchValue(this.evento);
+          this.evento.lotes.forEach(lote => {
+            this.lotes.push(this.createLote(lote));
+          });
+          // this.loadLotes();
         },
         error: (error: any) => {
           this.toastr.error('Erro ao tentar carregar evento', 'Erro!');
           console.error(error);
         },
-        complete: () => {}
       }).add(() => this.spinner.hide());
     }
   }
+
+  // public loadLotes(): void {
+  //   this.loteService.getLotesByEventoId(this.eventoId).subscribe({
+  //     next: (lotes: Lote[]) => {
+  //       lotes.forEach(lote => {
+  //         this.lotes.push(this.createLote(lote));
+  //       });
+  //     },
+  //     error: (error: any) => {
+  //       this.toastr.error('Erro ao tentar carregar evento', 'Erro!');
+  //       console.error(error);
+  //     },
+  //   }).add(() => this.spinner.hide());
+  // }
 
   ngOnInit(): void {
     this.loadEvento();
@@ -99,10 +116,10 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   addLote(): void {
-    this.lotes.push(this.criarLote({id: 0} as Lote));
+    this.lotes.push(this.createLote({id: 0} as Lote));
   }
 
-  criarLote(lote: Lote): FormGroup {
+  createLote(lote: Lote): FormGroup {
     return this.fb.group({
       id: [lote.id],
       nome: [lote.nome, Validators.required],
@@ -153,7 +170,7 @@ export class EventoDetalheComponent implements OnInit {
         .subscribe({
           next: () => {
             this.toastr.success('Lotes salvos com sucesso!', 'Sucesso!');
-            this.lotes.reset();
+            // this.lotes.reset();
           },
           error: (error: any) => {
             this.toastr.error('Erro ao tentar salvar lotes.', 'Erro!');

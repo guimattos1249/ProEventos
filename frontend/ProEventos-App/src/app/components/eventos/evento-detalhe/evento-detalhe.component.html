@@ -125,7 +125,7 @@
         <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i=index" >
           <fieldset [formGroupName]="i" class="form-group">
             <legend class="d-flex justify-content-between capitalize">
-              <button class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex  mt-3"
+              <button (click)="removeLote(template, i)"  class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex  mt-3"
                 tooltip="Excluir Lote"
                 [adaptivePosition]="false"
                 [delay]="500"
@@ -204,3 +204,11 @@
 </div>
 </div>
 <br>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Deletar lote {{this.loteAtual.nome}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmDeleteLote()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="declineDeleteLote()" >Não</button>
+  </div>
+</ng-template>

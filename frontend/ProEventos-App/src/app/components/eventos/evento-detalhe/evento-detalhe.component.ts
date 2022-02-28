@@ -1,5 +1,6 @@
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +11,7 @@ import { EventoService } from '@app/services/evento.service';
 import { LoteService } from '@app/services/lote.service';
 import { Evento } from '@app/models/Evento';
 import { Lote } from '@app/models/Lote';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -17,11 +19,12 @@ import { Lote } from '@app/models/Lote';
   styleUrls: ['./evento-detalhe.component.scss']
 })
 export class EventoDetalheComponent implements OnInit {
-
+  modalRef: BsModalRef;
   eventoId: number;
   evento = {} as Evento;
   public form!: FormGroup;
   saveState = 'post';
+  loteAtual = {id: 0, nome: '', indice: 0}
 
   get editMode(): boolean {
     return this.saveState === 'put';
@@ -53,7 +56,8 @@ export class EventoDetalheComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private router: Router,
-    private loteService: LoteService)
+    private loteService: LoteService,
+    private modalService: BsModalService)
   {
     this.localeService.use('pt-br');
   }
@@ -178,6 +182,35 @@ export class EventoDetalheComponent implements OnInit {
           },
         }).add(() => this.spinner.hide());
     }
+  }
+
+  public removeLote(template: TemplateRef<any>, indice: number): void {
+    this.loteAtual.id = this.lotes.get(indice + '.id').value;
+    this.loteAtual.nome = this.lotes.get(indice + '.nome').value;
+    this.loteAtual.indice = indice;
+
+
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  public confirmDeleteLote(): void {
+    this.modalRef.hide();
+    this.spinner.show();
+
+    this.loteService.deleteLote(this.eventoId, this.loteAtual.id).subscribe({
+      next: () => {
+        this.toastr.success('Lotes salvos com sucesso!', 'Sucesso!');
+        this.lotes.removeAt(this.loteAtual.indice);
+      },
+      error: (error: any) => {
+        this.toastr.error(`Erro ao tentar deletar lote ${this.loteAtual.nome}.`, 'Erro!');
+        console.error(error);
+      },
+    }).add(() => this.spinner.hide());
+  }
+
+  public declineDeleteLote(): void {
+    this.modalRef.hide();
   }
 
 }

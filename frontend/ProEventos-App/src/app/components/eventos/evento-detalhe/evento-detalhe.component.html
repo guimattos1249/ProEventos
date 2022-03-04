@@ -124,8 +124,9 @@
       <div [formGroup]="form" class="col">
         <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i=index" >
           <fieldset [formGroupName]="i" class="form-group">
-            <legend class="d-flex justify-content-between capitalize">
-              <button (click)="removeLote(template, i)"  class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex  mt-3"
+            <legend class="d-flex justify-content-between capitalize mt-3">
+                {{returnLoteTitle(lotes.get(i+'.nome').value)}}
+              <button (click)="removeLote(template, i)"  class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex"
                 tooltip="Excluir Lote"
                 [adaptivePosition]="false"
                 [delay]="500"
@@ -157,7 +158,12 @@
               <label>Preço</label>
               <input
                 [ngClass]="cssValidator(lotes.get(i+'.preco'))"
-                type="text" currencyMask class="form-control" formControlName="preco" placeholder="R$ 0,00">
+                type="text"
+                currencyMask
+                class="form-control"
+                formControlName="preco"
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                placeholder="R$ 0,00">
                 <div *ngIf="lotes.get(i+'.preco').errors?.required" class="invalid-feedback">
                   O Preco do lote é obrigatório
                 </div>
@@ -199,7 +205,7 @@
     <button class="btn btn-outline-secondary me-auto border">
       Cancelar Alteração
     </button>
-    <button class="btn btn-success" (click)="saveLotes()" >
+    <button [disabled]="!form.controls.lotes.valid" class="btn btn-success"  (click)="saveLotes()" >
       Salvar Lotes
     </button>
   </div>

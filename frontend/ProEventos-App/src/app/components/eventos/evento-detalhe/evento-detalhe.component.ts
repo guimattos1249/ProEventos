@@ -75,7 +75,7 @@ export class EventoDetalheComponent implements OnInit {
   public loadEvento(): void {
     this.eventoId = +this.activatedRouter.snapshot.paramMap.get('id');
 
-    if(this.eventoId !== null || this.eventoId == 0) {
+    if(this.eventoId !== null && this.eventoId !== 0) {
 
       this.saveState = 'put';
 
@@ -177,20 +177,22 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public saveLotes(): void{
-    this.spinner.show();
+    if(this.form.controls.lotes.valid){
+      this.spinner.show();
 
-    if(this.form.controls.lotes.status){
-      this.loteService.saveLotes(this.eventoId, this.form.value.lotes)
-        .subscribe({
-          next: () => {
-            this.toastr.success('Lotes salvos com sucesso!', 'Sucesso!');
-            // this.lotes.reset();
-          },
-          error: (error: any) => {
-            this.toastr.error('Erro ao tentar salvar lotes.', 'Erro!');
-            console.error(error);
-          },
-        }).add(() => this.spinner.hide());
+      if(this.form.controls.lotes.status){
+        this.loteService.saveLotes(this.eventoId, this.form.value.lotes)
+          .subscribe({
+            next: () => {
+              this.toastr.success('Lotes salvos com sucesso!', 'Sucesso!');
+              // this.lotes.reset();
+            },
+            error: (error: any) => {
+              this.toastr.error('Erro ao tentar salvar lotes.', 'Erro!');
+              console.error(error);
+            },
+          }).add(() => this.spinner.hide());
+      }
     }
   }
 
@@ -221,6 +223,12 @@ export class EventoDetalheComponent implements OnInit {
 
   public declineDeleteLote(): void {
     this.modalRef.hide();
+  }
+
+  public returnLoteTitle(nome: string): string {
+    return nome === null || nome == ''
+    ? 'Nome do Lote'
+    : nome
   }
 
 }

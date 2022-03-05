@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Evento } from '@app/models/Evento';
 import { EventoService } from '@app/services/evento.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-evento-lista',
@@ -65,6 +66,12 @@ export class EventoListaComponent implements OnInit {
       },
       error: (error: any) => this.toastr.error('Erro ao carregar os eventos.', 'Erro!'),
     }).add(() => this.spinner.hide());;
+  }
+
+  public showImage(imageURL: string): string {
+    return (imageURL)
+      ? `${environment.apiURL}resources/images/${imageURL}`
+      : 'assets/img/semImg.png'
   }
 
   openModal(event: any, template: TemplateRef<any>, eventoId: number): void {

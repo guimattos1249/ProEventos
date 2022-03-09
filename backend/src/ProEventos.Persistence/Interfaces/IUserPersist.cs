@@ -8,6 +8,6 @@ namespace ProEventos.Persistence.Interfaces
     {
         Task<IEnumerable<User>> GetUsersAsync();
         Task<User> GetUserByIdAsync(int Id);
-        Task<User> GetUserByUsernameAsync(string username);
+        Task<User> GetUserByUserNameAsync(string userName);
     }
 }

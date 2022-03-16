@@ -1,9 +1,10 @@
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProEventos.API.Extensions;
 using ProEventos.Application.Dtos;
 using ProEventos.Application.Interfaces;
 
@@ -16,23 +17,21 @@ namespace ProEventos.API.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
-        private readonly IMapper _mapper;
 
         public AccountController(IAccountService accountService,
-                                 ITokenService tokenService,
-                                 IMapper mapper
+                                 ITokenService tokenService
                                 )
         {
             this._accountService = accountService;
             this._tokenService = tokenService;
-            this._mapper = mapper;
         }
 
-        [HttpGet("GetUser/{userName}")]
-        public async Task<IActionResult> GetUser(string userName)
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser()
         {
             try
             {
+                var userName = User.GetUserName();
                 var user = await _accountService.GetUserByUserNameAsync(userName);
                 return Ok(user);
             }

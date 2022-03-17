@@ -3,6 +3,7 @@ import { AccountService } from './../../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { UserLogin } from '@app/models/Identity/UserLogin';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private router: Router,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
 
   public login(): void {
+    this.spinner.show();
     this.accountService.login(this.model).subscribe({
       next: () => this.router.navigateByUrl('/dashboard'),
       error: (error: any) => {
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit {
           this.toastr.error('Usuário ou Senha inválidos.', 'Erro!');
         else console.error(error);
       },
-    });
+    }).add(() => this.spinner.hide());;
   }
 
 }

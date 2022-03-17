@@ -65,7 +65,7 @@ export class EventoListaComponent implements OnInit {
         this.eventosFiltrados = this.eventos;
       },
       error: (error: any) => this.toastr.error('Erro ao carregar os eventos.', 'Erro!'),
-    }).add(() => this.spinner.hide());;
+    }).add(() => this.spinner.hide());
   }
 
   public showImage(imageURL: string): string {
@@ -95,7 +95,7 @@ export class EventoListaComponent implements OnInit {
         this.toastr.error(`Erro ao tentar deletar o evento ${this.eventoId}.`, 'Erro!');
       },
       complete: () => {}
-    }).add(() => this.spinner.hide());;
+    }).add(() => this.spinner.hide());
 
 
   }

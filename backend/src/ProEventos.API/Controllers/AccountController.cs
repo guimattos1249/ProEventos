@@ -50,8 +50,14 @@ namespace ProEventos.API.Controllers
                 if(await _accountService.UserExists(userDto.UserName)) return BadRequest("Usuário Já Existe");
 
                 var user = await _accountService.CreatAccountAsync(userDto);
-
-                if(user != null) return Ok(user);
+                
+                if(user != null) 
+                    return Ok(new
+                    {
+                        userName = user.UserName,
+                        PrimeiroNome = user.PrimeiroNome,
+                        token = _tokenService.CreateToken(user).Result
+                    });
 
                 return BadRequest("Usuário não criado, tente novamente mais tarde!");
             }

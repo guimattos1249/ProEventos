@@ -9,7 +9,7 @@ namespace ProEventos.Application.Interfaces
         Task<bool> UserExists(string userName);
         Task<UserUpdateDto> GetUserByUserNameAsync(string userName);
         Task<SignInResult> CheckUserPasswordAsync(UserUpdateDto userUpdateDto, string Password);
-        Task<UserDto> CreatAccountAsync(UserDto userDto);
+        Task<UserUpdateDto> CreatAccountAsync(UserDto userDto);
         Task<UserUpdateDto> UpdateAccount(UserUpdateDto userUpdateDto);
     }
 }

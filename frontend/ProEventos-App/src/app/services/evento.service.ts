@@ -10,12 +10,11 @@ import { take } from 'rxjs/operators';
 )
 export class EventoService {
   baseURL = environment.apiURL + 'api/eventos';
-  tokenHeader = new HttpHeaders({ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJvZ3VpbWF0dG9zIiwibmJmIjoxNjQ3NTQ3NjEwLCJleHAiOjE2NDgxNTI0MTAsImlhdCI6MTY0NzU0NzYxMH0.814ecKfQIo8HlQ-hSmVsfMw5H9i-wdEakOtp2dapXOIocZf6Cail0XWQWKva_wWQBeAK8ynIxWejL5WERME68g' });
 
   constructor(private http: HttpClient) { }
 
   public getEventos(): Observable<Evento[]> {
-    return this.http.get<Evento[]>(this.baseURL, { headers: this.tokenHeader })
+    return this.http.get<Evento[]>(this.baseURL)
       .pipe(take(1));
   }
   public getEventosByTema(tema: string): Observable<Evento[]> {

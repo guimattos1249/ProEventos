@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 import { User } from '@app/models/Identity/User';
 import { map, take } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   public currentUser$ = this.currentUserSource.asObservable();

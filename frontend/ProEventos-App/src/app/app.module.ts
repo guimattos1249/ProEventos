@@ -38,6 +38,7 @@ import { LoteService } from './services/lote.service';
 import { AccountService } from './services/account.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { HomeComponent } from './components/home/home.component';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -57,6 +58,7 @@ defineLocale('pt-br', ptBrLocale);
       UserComponent,
       LoginComponent,
       RegistrationComponent,
+      HomeComponent,
   ],
   imports: [
     BrowserModule,

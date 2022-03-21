@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '@app/models/Identity/User';
 import { map, take } from 'rxjs/operators';
+import { UserUpdate } from '@app/models/Identity/UserUpdate';
 
 @Injectable()
 export class AccountService {
@@ -22,6 +23,19 @@ export class AccountService {
         if(user) {
           this.setCurrentUser(user);
         }
+      })
+    );
+  }
+
+  public getUser(): Observable<UserUpdate> {
+    return this.http.get<UserUpdate>(this.baseURL + 'getUser').pipe(take(1));
+  }
+
+  public updateUser(model: UserUpdate): Observable<void> {
+    return this.http.put<UserUpdate>(this.baseURL + 'updateUser', model).pipe(
+      take(1),
+      map((user: UserUpdate) => {
+        this.setCurrentUser(user);
       })
     );
   }

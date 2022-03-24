@@ -7,7 +7,7 @@
           type="text"
           class="form-control me-2"
           placeholder="Fitrar por tema e local"
-          [(ngModel)]="listFilter"
+          (input)="filteredEvents($event.target)"
         >
       </div>
     </div>
@@ -38,7 +38,7 @@
       </tr>
     </thead>
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let evento of eventosFiltrados" (click)="detailEvento(evento.id)" style="cursor: pointer;" >
+      <tr *ngFor="let evento of eventos" (click)="detailEvento(evento.id)" style="cursor: pointer;" >
         <td class="d-none d-md-table-cell">
           <img
             [src]="showImage(evento.imagemURL)"

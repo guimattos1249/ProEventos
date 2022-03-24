@@ -1,3 +1,4 @@
+import { PaginatedResult } from './../../../models/Pagination';
 import { Router } from '@angular/router';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Evento } from '@app/models/Evento';
 import { EventoService } from '@app/services/evento.service';
 import { environment } from '@environments/environment';
+import { Pagination } from '@app/models/Pagination';
 
 @Component({
   selector: 'app-evento-lista',
@@ -19,6 +21,7 @@ export class EventoListaComponent implements OnInit {
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
   public eventoId: number = 0;
+  public pagination = {} as Pagination;
 
   public widthImg: number = 100;
   public margImg: number = 2;
@@ -54,15 +57,17 @@ export class EventoListaComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.spinner.show();
+    this.pagination = {currentPage: 1, itemsPerPage: 3, totalItems: 1} as Pagination;
     this.getEventos();
   }
 
   public getEventos(): void {
-    this.eventoService.getEventos().subscribe({
-      next: (_eventos: Evento[]) => {
-        this.eventos = _eventos;
+    this.spinner.show();
+    this.eventoService.getEventos(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe({
+      next: (paginatedResult: PaginatedResult<Evento[]>) => {
+        this.eventos = paginatedResult.result;
         this.eventosFiltrados = this.eventos;
+        this.pagination  = paginatedResult.pagination;
       },
       error: (error: any) => this.toastr.error('Erro ao carregar os eventos.', 'Erro!'),
     }).add(() => this.spinner.hide());
@@ -78,6 +83,11 @@ export class EventoListaComponent implements OnInit {
     event.stopPropagation();
     this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  public pageChanged(event): void {
+    this.pagination.currentPage = event.page;
+    this.getEventos();
   }
 
   confirm(): void {

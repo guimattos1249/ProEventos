@@ -34,13 +34,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## DotNet Commands
 
 `dotnet watch run` - Start server
+
 `dotnet ef migrations add InitialCreate` - Generate migrations
+
 `dotnet ef database update` - Update database
 
+
 `dotnet new sln -n ProEventos` - Create solution to associate projects
+
 `dotnet new classlib -n ProEventos.Persistence` - Create Persistence project
+
 `dotnet new classlib -n ProEventos.Domain` - Create Domain project
+
 `dotnet new classlib -n ProEventos.Application` - Create Application project
+
 
 `dotnet sln ProEventos.sln add ProEventos.Application` - Do this to all projects. Added Projects to Solution
 

@@ -41,7 +41,7 @@ namespace ProEventos.Persistence
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<RedeSocial[]> GetAllByEventoIdAsync(int eventoId)
+        public async Task<RedeSocial[]> GetAllByEventoIdsAsync(int eventoId)
         {
             IQueryable<RedeSocial> query = _context.RedesSociais;
 

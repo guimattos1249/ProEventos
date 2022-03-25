@@ -14,8 +14,8 @@ namespace ProEventos.Application.Interfaces
         Task<RedeSocialDto[]>SaveByPalestrante(int palestranteId, RedeSocialDto[] models);
         Task<bool>DeleteByPalestrante(int palestranteId, int redeSocialId);
         
-        Task<RedeSocialDto[]>GetAllByEventoIdAsync(int eventoId);
-        Task<RedeSocialDto[]>GetAllByPalestranteIdAsync(int palestranteId);
+        Task<RedeSocialDto[]>GetAllByEventoIdsAsync(int eventoId);
+        Task<RedeSocialDto[]>GetAllByPalestranteIdsAsync(int palestranteId);
 
         Task<RedeSocialDto>GetRedeSocialEventoByIdsAsync(int eventoId, int redeSocialId);
         Task<RedeSocialDto>GetRedeSocialPalestranteByIdsAsync(int palestranteId, int redeSocialId);

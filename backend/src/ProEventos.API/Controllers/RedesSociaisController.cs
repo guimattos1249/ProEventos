@@ -152,7 +152,7 @@ namespace ProEventos.API.Controllers
         private async Task<bool> AutorEvento(int eventoId)
         {
             var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), eventoId, false);
-            if(evento != null) return false;
+            if(evento == null) return false;
 
             return true;
         }

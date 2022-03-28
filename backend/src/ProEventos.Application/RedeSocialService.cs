@@ -12,9 +12,9 @@ namespace ProEventos.Application
 {
     public class RedeSocialService : IRedeSocialService
     {
-        private readonly IRedeSocailPersist _redeSocialPersist;
+        private readonly IRedeSocialPersist _redeSocialPersist;
         private readonly IMapper _mapper;
-        public RedeSocialService(IRedeSocailPersist redeSocialPersist,
+        public RedeSocialService(IRedeSocialPersist redeSocialPersist,
                             IMapper mapper)
         {
             this._mapper = mapper;

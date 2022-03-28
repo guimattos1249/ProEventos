@@ -9,7 +9,7 @@ using ProEventos.Persistence.Interfaces;
 
 namespace ProEventos.Persistence
 {
-    public class RedeSocialPersist : GeralPersist, IRedeSocailPersist
+    public class RedeSocialPersist : GeralPersist, IRedeSocialPersist
     {
         private readonly ProEventosContext _context;
 

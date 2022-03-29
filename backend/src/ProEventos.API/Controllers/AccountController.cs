@@ -19,7 +19,7 @@ namespace ProEventos.API.Controllers
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
         private readonly IUtil _util;
-        private readonly string _destiny = "Pèrfil";
+        private readonly string _destiny = "Perfil";
 
         public AccountController(IAccountService accountService,
                                  ITokenService tokenService,

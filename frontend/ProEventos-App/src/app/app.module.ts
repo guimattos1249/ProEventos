@@ -15,6 +15,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
+import { PerfilDetalheComponent } from './components/user/perfil/perfil-detalhe/perfil-detalhe.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { TitleComponent } from './shared/title/title.component';
@@ -54,6 +56,7 @@ defineLocale('pt-br', ptBrLocale);
       ContatosComponent,
       DashboardComponent,
       PerfilComponent,
+      PerfilDetalheComponent,
       EventoDetalheComponent,
       EventoListaComponent,
       UserComponent,
@@ -80,6 +83,7 @@ defineLocale('pt-br', ptBrLocale);
       progressBar: true,
     }),
     BsDatepickerModule.forRoot(),
+    TabsModule.forRoot(),
     NgxSpinnerModule,
     NgxCurrencyModule,
   ],

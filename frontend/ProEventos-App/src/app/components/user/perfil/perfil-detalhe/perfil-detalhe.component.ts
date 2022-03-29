@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorField } from '@app/helpers/ValidatorField';
@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PerfilDetalheComponent implements OnInit {
 
+  @Output() changeFormValue = new EventEmitter();
+
   userUpdate = {} as UserUpdate;
   public form!: FormGroup;
 
@@ -27,6 +29,15 @@ export class PerfilDetalheComponent implements OnInit {
   ngOnInit() {
     this.validation();
     this.loadUser();
+    this.verifyForm();
+  }
+
+  private verifyForm(): void {
+    this.form.valueChanges.subscribe(
+      {
+        next: () => this.changeFormValue.emit({ ... this.form.value }),
+        error: (error: any) => console.error(error)
+      });
   }
 
   private loadUser(): void {

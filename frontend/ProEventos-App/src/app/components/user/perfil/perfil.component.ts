@@ -1,3 +1,4 @@
+import { User } from '@app/models/Identity/User';
 import { UserUpdate } from './../../../models/Identity/UserUpdate';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -13,12 +14,16 @@ import { ValidatorField } from '@app/helpers/ValidatorField';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
-  userUpdate = {} as UserUpdate;
+  user = {} as UserUpdate;
 
   constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  public setFormValue(user: UserUpdate): void {
+    this.user = user;
   }
 
   get f(): any{

@@ -1,3 +1,4 @@
+import { PalestranteService } from '@app/services/palestrante.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,6 +23,7 @@ export class PerfilDetalheComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public accountService: AccountService,
+    public palestranteService: PalestranteService,
     private router: Router,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService) { }
@@ -90,6 +92,10 @@ export class PerfilDetalheComponent implements OnInit {
   public updateUser() {
     this.userUpdate = { ... this.form.value };
     this.spinner.show();
+
+    if(this.f.funcao.value == 'Palestrante') {
+      this.palestranteService.post().subscribe();
+    }
 
     this.accountService.updateUser(this.userUpdate).subscribe({
       next: () => this.toastr.success('Usuário Atualizado!', 'Sucesso!'),

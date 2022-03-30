@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 
 import { EventosComponent } from './components/eventos/eventos.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
+import { PalestranteListaComponent } from './components/palestrantes/palestrante-lista/palestrante-lista.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { PerfilDetalheComponent } from './components/user/perfil/perfil-detalhe/perfil-detalhe.component';
@@ -63,6 +64,7 @@ defineLocale('pt-br', ptBrLocale);
       LoginComponent,
       RegistrationComponent,
       HomeComponent,
+      PalestranteListaComponent
   ],
   imports: [
     BrowserModule,

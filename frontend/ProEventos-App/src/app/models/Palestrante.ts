@@ -1,13 +1,11 @@
+import { UserUpdate } from '@app/models/Identity/UserUpdate';
 import { Evento } from "./Evento";
 import { RedeSocial } from "./RedeSocial";
 
 export interface Palestrante {
   id: number;
-  nome: string;
   miniCurriculo: string;
-  imaagemURL: string;
-  telefone: string;
-  email: string;
+  user: UserUpdate;
   redesSociais: RedeSocial[];
   palestrantesEventos: Evento[];
 }

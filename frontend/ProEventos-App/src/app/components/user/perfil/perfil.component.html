@@ -29,7 +29,7 @@
               </div>
               <div class="col-6 text-center">
                 <div class="h5">0</div>
-                <div class="h6 text-muted">Eventos Participados</div>
+                <div class="h6 text-muted">Eventos {{user.funcao}}</div>
               </div>
             </div>
           </li>
@@ -52,6 +52,10 @@
             <i class="fa fa-user me-2"></i>
             <span>Palestrante</span>
           </ng-template>
+          <div class="form-group">
+            <h3 class="border-bottom">Palestrante</h3>
+          </div>
+
           <app-palestrante-detalhe></app-palestrante-detalhe>
         </tab>
         <tab *ngIf="isPalestrante" class="border border-top-0 p-3">
@@ -59,7 +63,11 @@
             <i class="fa fa-share-square me-2"></i>
             <span>Rede Social</span>
           </ng-template>
-          //Componente//
+          <div class="form-group">
+            <h3 class="border-bottom">Rede Social</h3>
+          </div>
+
+          <app-redesSociais></app-redesSociais>
         </tab>
       </tabset>
     </div>

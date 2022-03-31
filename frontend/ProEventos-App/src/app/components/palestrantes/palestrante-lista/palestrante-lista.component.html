@@ -6,14 +6,14 @@
         <input
           type="text"
           class="form-control me-2"
-          placeholder="Fitrar por tema e local"
+          placeholder="Fitrar por Nome e Minicurrículo"
           (input)="filteredPalestrantes($event.target)"
         >
       </div>
     </div>
   </div>
   <div *ngIf="palestrantes && palestrantes.length" class="row mt-2">
-    <div class="col-md-4 mb-4 d-flex align-items-stretch" *ngFor="let palestrante of palestrantes" >
+    <div class="col-md-4 mb-4 pe-4 align-items-stretch" *ngFor="let palestrante of palestrantes" >
       <div class="card">
         <div class="d-flex align-self-center pt-3">
           <img

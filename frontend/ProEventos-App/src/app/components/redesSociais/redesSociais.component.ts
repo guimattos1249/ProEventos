@@ -80,7 +80,7 @@ export class RedesSociaisComponent implements OnInit {
     return {'is-invalid': fieldForm.errors && fieldForm.touched };
   }
 
-  public saveRedeSocials(): void{
+  public saveRedeSociais(): void{
     // if(this.formRS.controls.redesSociais.valid){
     //   this.spinner.show();
 

@@ -5,9 +5,9 @@
       <fieldset [formGroupName]="i" class="form-group">
         <legend class="d-flex justify-content-between capitalize">
           {{ returnTitle(redesSociais.get(i+'.nome').value) }}
-          <!-- <button class="btn btn-sm btn-warning mb-1" (click)="removerRedeSocial(template, i)">remove</button> -->
+          <button class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex" (click)="removeRedeSocial(template, i)">Excluir</button>
         </legend>
-        <div class="row">
+        <div class="row mb-4">
           <div class="form-group col-md-4">
             <label>Nome</label>
             <select class="form-control" [ngClass]="cssValidator(redesSociais.get(i+'.nome'))" formControlName="nome">
@@ -35,19 +35,19 @@
     </div>
     <button (click)="addRedeSocial()" class="d-flex btn btn-outline-primary">
       <i class="fa fa-plus-circle my-1"></i>
-      <b class="ml-1">Rede Social</b>
+      <b class="ms-1">Rede Social</b>
     </button>
   </div>
 </div>
 
 <div class="card-footer">
   <div class="d-flex">
-    <button class="btn btn-outline-secondary mr-auto border">
+    <button class="btn btn-outline-secondary me-auto border">
       Cancelar Alteração
     </button>
-    <!-- <button [disabled]="!formRS.controls.redesSociais.valid" (click)="salvarRedesSociais()" class="btn btn-success">
+    <button [disabled]="!formRS.controls.redesSociais.valid" (click)="saveRedeSociais()" class="btn btn-success">
       Salvar Redes Sociais
-    </button> -->
+    </button>
   </div>
 </div>
 

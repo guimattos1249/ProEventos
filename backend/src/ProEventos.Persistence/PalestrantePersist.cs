@@ -49,7 +49,7 @@ namespace ProEventos.Persistence
             {
                 query = query.
                     Include(p => p.PalestrantesEventos).
-                    ThenInclude(pe => pe.Palestrante);
+                    ThenInclude(pe => pe.Evento);
             }
 
             query = query.AsNoTracking().OrderBy(e => e.Id).

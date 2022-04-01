@@ -1,5 +1,5 @@
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RedeSocial } from '@app/models/RedeSocial';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,7 +13,7 @@ import { RedeSocialService } from '@app/services/redeSocial.service';
 })
 export class RedesSociaisComponent implements OnInit {
   modalRef: BsModalRef;
-  public eventoId = 0;
+  @Input() eventoId: number = 0;
   public formRS: FormGroup;
   public redeSocialAtual = { id: 0, nome: '', indice: 0 };
 
@@ -30,13 +30,15 @@ export class RedesSociaisComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.eventoId === 0) {
-      this.loadRedesSociais('palestrante');
-    }
+    this.loadRedesSociais(this.eventoId);
     this.validation();
   }
 
-  public loadRedesSociais(origem: string, id: number = 0): void {
+  public loadRedesSociais(id: number = 0): void {
+    let origem = 'palestrante';
+
+    if(this.eventoId !== 0) origem = 'evento';
+
     this.spinner.show();
 
     this.redeSocialService
